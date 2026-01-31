@@ -1,0 +1,27 @@
+print("bienvenue ! HiMe est a votre service.")
+
+def main():
+    while True:
+        user_input = input("votre demande : ")
+
+        if user_input.lower() == "quitter":
+            print("Au revoir !")
+            break
+
+        if user_input.lower() == "a":
+            print("la fonction A est en cours de développement.")
+        elif user_input.lower() == "b":
+            print("la fonction B est en cours de développement.")
+        elif user_input.lower() == "c":
+            print("la fonction C est en cours de développement.")
+        elif user_input.lower() == "d":
+            print("la fonction D est en cours de développement.")
+        elif user_input.lower() == "e":
+            print("la fonction E est en cours de développement.")
+        elif user_input.lower() == "f":
+            print("la fonction F est en cours de développement.")
+        else:
+            print("Commande non reconnue. Veuillez réessayer.")
+
+if __name__ == "__main__":
+    main()
