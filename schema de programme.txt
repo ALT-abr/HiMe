@@ -1,0 +1,22 @@
+HiMe
+│
+├── Menu
+│   │
+│   ├── Ajouter un mot / une expression
+│   │
+│   ├── Voir mes listes
+│   │   │
+│   │   ├── Liste des mots
+│   │   └── Liste des expressions
+│   │
+│   ├── Jouer un quiz
+│   │   │
+│   │   ├── Quiz : mot → traduction
+│   │   ├── Quiz : définition → mot
+│   │   └── Quiz : expression → traduction
+│   │
+│   ├── Consulter l’historique des quiz
+│   │
+│   ├── Voir ma progression
+│   │
+│   └── Quitter

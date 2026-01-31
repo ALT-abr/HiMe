@@ -1,0 +1,16 @@
+Concept de HiMe
+
+HiMe est une application personnelle conçue pour aider l’utilisateur à améliorer son vocabulaire, aussi bien les mots que les expressions.
+Le programme permet de saisir, organiser, réviser et suivre l’apprentissage du vocabulaire de manière progressive et interactive.
+
+L’utilisateur peut ajouter un mot ou une expression en renseignant plusieurs informations essentielles : le mot ou l’expression*, sa définition*, son type (nom, verbe, expression ou autre), une traduction* dans une langue choisie (arabe, anglais ou kabyle), ainsi qu’une phrase d’exemple. Certains champs sont obligatoires (*) afin de garantir la qualité des données enregistrées. Chaque élément ajouté est automatiquement stocké avec sa date d’ajout.
+
+Le programme met également à disposition une section dédiée à la consultation du vocabulaire, organisée en deux listes distinctes : une liste des mots et une liste des expressions. Dans ces listes, l’utilisateur peut visualiser les éléments déjà saisis avec leurs informations principales, telles que la traduction, la définition et la date d’enregistrement. Cette section fonctionne comme un dictionnaire personnel.
+
+Afin de renforcer l’apprentissage, HiMe propose trois types de quiz. Le premier quiz consiste à associer un mot à sa traduction. Le second quiz demande de retrouver un mot à partir de sa définition. Le troisième quiz permet de retrouver la traduction correcte d’une expression. Pour les quiz basés sur la traduction, l’utilisateur choisit la langue avant de commencer. Chaque quiz contient dix questions, avec un système de score simple : deux points sont attribués pour chaque bonne réponse, et aucune pénalité n’est appliquée en cas d’erreur.
+
+Après chaque session de quiz, les résultats sont enregistrés dans une section Historique, où l’utilisateur peut consulter les quiz déjà passés, le type de quiz, le score obtenu et la date.
+
+Enfin, le programme propose une section Progression, qui permet de suivre l’évolution de l’apprentissage. Cette section affiche le nombre total de mots et d’expressions enregistrés, ainsi qu’un graphique montrant l’évolution des scores obtenus dans les trois types de quiz au fil du temps.
+
+L’objectif principal de HiMe est de combiner apprentissage linguistique et pratique informatique, tout en offrant un outil simple, structuré et évolutif
