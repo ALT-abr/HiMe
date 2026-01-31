@@ -3,7 +3,7 @@ Concept de HiMe
 HiMe est une application personnelle conçue pour aider l’utilisateur à améliorer son vocabulaire, aussi bien les mots que les expressions.
 Le programme permet de saisir, organiser, réviser et suivre l’apprentissage du vocabulaire de manière progressive et interactive.
 
-L’utilisateur peut ajouter un mot ou une expression en renseignant plusieurs informations essentielles : le mot ou l’expression*, sa définition*, son type (nom, verbe, expression ou autre), une traduction* dans une langue choisie (arabe, anglais ou kabyle), ainsi qu’une phrase d’exemple. Certains champs sont obligatoires (*) afin de garantir la qualité des données enregistrées. Chaque élément ajouté est automatiquement stocké avec sa date d’ajout.
+L’utilisateur peut ajouter un mot ou une expression en renseignant plusieurs informations essentielles : le mot ou l’expression*, sa définition, son type (nom, verbe, expression ou autre), une traduction* dans une langue choisie (arabe, anglais ou kabyle), ainsi qu’une phrase d’exemple. Certains champs sont obligatoires (*) afin de garantir la qualité des données enregistrées. Chaque élément ajouté est automatiquement stocké avec sa date d’ajout.
 
 Le programme met également à disposition une section dédiée à la consultation du vocabulaire, organisée en deux listes distinctes : une liste des mots et une liste des expressions. Dans ces listes, l’utilisateur peut visualiser les éléments déjà saisis avec leurs informations principales, telles que la traduction, la définition et la date d’enregistrement. Cette section fonctionne comme un dictionnaire personnel.
 
