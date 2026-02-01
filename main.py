@@ -1,10 +1,19 @@
 print("bienvenue ! HiMe est a votre service.")
 
+def menu():
+    print("\nA - ajouter un vocabulaire")
+    print("B - voir ma liste de vocabulaire")
+    print("C - jouer un quiz")
+    print("D - voir l'historique de mes quiz")
+    print("E - voir mes statistiques")
+    print("Q - quitter")
+
 def main():
     while True:
-        user_input = input("votre demande : ")
+        menu()
+        user_input = input("\nVotre demande : ")
 
-        if user_input.lower() == "quitter":
+        if user_input.lower() == "q":
             print("Au revoir !")
             break
 
@@ -18,8 +27,6 @@ def main():
             print("la fonction D est en cours de développement.")
         elif user_input.lower() == "e":
             print("la fonction E est en cours de développement.")
-        elif user_input.lower() == "f":
-            print("la fonction F est en cours de développement.")
         else:
             print("Commande non reconnue. Veuillez réessayer.")
 
