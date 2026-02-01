@@ -9,6 +9,8 @@ HiMe
 │   │   ├── Liste des mots
 │   │   └── Liste des expressions
 │   │
+|   ├── Supperimer un mot/expression
+│   │
 │   ├── Jouer un quiz
 │   │   │
 │   │   ├── Quiz : mot → traduction
