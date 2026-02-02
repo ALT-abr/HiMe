@@ -1,6 +1,11 @@
-from dictionnaire import get_vocabulary, supprimer_vocabulaire
+import os
+from dictionnaire import get_vocabulary, supprimer_vocabulaire, get_choix, get_list
+from progression import n_mots, n_expressions, affiche_n
 
 print("bienvenue ! HiMe est a votre service.")
+
+def clrean_screen():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 def affiche_menu():
     print("\nA - ajouter un vocabulaire")
@@ -13,7 +18,9 @@ def affiche_menu():
 
 def main():
     while True:
+        clrean_screen()
         affiche_menu()
+
         user_input = input("\nVotre demande : ").lower()
 
         if user_input.lower() == "q":
@@ -23,16 +30,18 @@ def main():
         if user_input == "a":
             get_vocabulary()
         elif user_input == "b":
-            print("la fonction B est en cours de développement.")
+            nature = get_choix()
+            get_list(nature)
         elif user_input == "c":
             print("la fonction C est en cours de développement.")
         elif user_input == "s":
-            vocab = input("quelle vocabulaire souhite vous a supprimer : ")
-            supprimer_vocabulaire(vocab)
+            supprimer_vocabulaire()
         elif user_input == "d":
             print("la fonction D est en cours de développement.")
         elif user_input == "e":
-            print("la fonction E est en cours de développement.")
+            n_mot = n_mots()
+            n_expr = n_expressions()
+            affiche_n(n_mot, n_expr)
         else:
             print("Commande non reconnue. Veuillez réessayer.")
 

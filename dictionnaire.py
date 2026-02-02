@@ -1,7 +1,13 @@
+import os
 import sqlite3
 from datetime import datetime
 
+def clrean_screen():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
 def get_vocabulary():
+    clrean_screen()
+
     conn = sqlite3.connect("HiMe.db")
     c = conn.cursor()
 
@@ -66,10 +72,74 @@ def get_vocabulary():
               VALUES(?,?,?)""", (traduction, langue,c.lastrowid))
     
     conn.commit()
+    conn.close()
 
     print("Yay! le vocabulaire a été ajouté avec succès!")
+    input("")
 
-def supprimer_vocabulaire(nom: str):
-    c = sqlite3.connect("HiMe.db").cursor()
+def supprimer_vocabulaire():
+    clrean_screen()
 
-    c.execute("DELETE FROM vocabulaire WHERE mot_expression = (?)", nom)
+    conn = sqlite3.connect("HiMe.db")
+    conn.execute("PRAGMA foreign_keys = ON")
+    c = conn.cursor()
+
+    while True:
+        nom = input("quelle vocabulaire souhite vous a supprimer : ").lower().strip()
+        if nom == "":
+            break
+
+        c.execute("SELECT id_vocab FROM vocabulaire WHERE mot_expression = ?", (nom,))
+        ver = c.fetchone()
+        if ver is None:
+            print("Mot ou expression introuvable.")
+        else:
+            break
+
+    c.execute("DELETE FROM vocabulaire WHERE mot_expression = ?", (nom,))
+
+    conn.commit()
+    conn.close()
+    print("\nMot / expression supprimé avec succès.")
+
+def get_choix():
+    while True:
+        choix = input("voire M = ma listes des mots ou E = ma listes des expresions : ").lower()
+        if choix == "m":
+            choix = "mot"
+            break
+        elif choix == "e":
+            choix = "expression"
+            break
+        else:
+            print("choix invalide! resaye.")
+    return choix
+
+def get_list(nature: str):
+    clrean_screen()
+    
+    conn = sqlite3.connect("HiMe.db")
+    c = conn.cursor()
+
+    if nature == "mot":
+        c.execute("SELECT mot_expression, definition_vocab, example_vocab FROM vocabulaire WHERE nature_vocab = ?" ,(nature,))
+        items = c.fetchall()
+    elif nature == "expression":
+        c.execute("SELECT mot_expression, definition_vocab, example_vocab FROM vocabulaire WHERE nature_vocab = ?" ,(nature,))
+        items = c.fetchall()
+
+    if not items:
+        print("La liste est vide pour l'instant.")
+        conn.close()
+        input("")
+        return
+    
+    print("-" *50)
+    for i, (mot, definition, example) in enumerate(items, 1):
+        print(f"{i} | {mot} | {definition or '-'} | {example or '-'}")
+        print("-" *50)
+
+    conn.close()
+
+    input("")
+
