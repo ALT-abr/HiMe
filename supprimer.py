@@ -11,4 +11,4 @@ c.execute("DELETE FROM vocabulaire")
 conn.commit()
 conn.close()
 
-print("\nla base de donne est nettoyer!")
+print("\nLa base de données est nettoyée !")

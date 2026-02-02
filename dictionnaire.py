@@ -142,4 +142,3 @@ def get_list(nature: str):
     conn.close()
 
     input("")
-

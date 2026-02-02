@@ -38,4 +38,4 @@ c.execute("""CREATE TABLE IF NOT EXISTS quiz_questions(
 
 conn.commit()
 
-print("Base de données créée et prête à être utilisée :)")
+print("La base de données HiMe a été créée et est prête à être utilisée :)")

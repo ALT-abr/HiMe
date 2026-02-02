@@ -32,10 +32,10 @@ def main():
         elif user_input == "b":
             nature = get_choix()
             get_list(nature)
-        elif user_input == "c":
-            print("la fonction C est en cours de développement.")
         elif user_input == "s":
             supprimer_vocabulaire()
+        elif user_input == "c":
+            print("la fonction C est en cours de développement.")
         elif user_input == "d":
             print("la fonction D est en cours de développement.")
         elif user_input == "e":

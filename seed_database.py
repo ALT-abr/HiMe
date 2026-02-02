@@ -286,4 +286,4 @@ c.executescript(les_expressions)
 conn.commit()
 conn.close()
 
-print("\nBase de données remplie avec succès!")
+print("\nLa base de données HiMe a été remplie avec succès !")
