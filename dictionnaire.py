@@ -68,3 +68,8 @@ def get_vocabulary():
     conn.commit()
 
     print("Yay! le vocabulaire a été ajouté avec succès!")
+
+def supprimer_vocabulaire(nom: str):
+    c = sqlite3.connect("HiMe.db").cursor()
+
+    c.execute("DELETE FROM vocabulaire WHERE mot_expression = (?)", nom)

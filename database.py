@@ -18,7 +18,7 @@ c.execute("""CREATE TABLE IF NOT EXISTS traduction(
         traduction TEXT NOT NULL,
         langue_trad TEXT NOT NULL,     /*ENUM("anglais","kabyle","arabe")*/
         vocabulaire INTEGER NOT NULL,
-        FOREIGN KEY(vocabulaire) REFERENCES vocabulaire(id_vocab)
+        FOREIGN KEY(vocabulaire) REFERENCES vocabulaire(id_vocab) ON DELETE CASCADE
         )""")
 
 c.execute("""CREATE TABLE IF NOT EXISTS quiz(
