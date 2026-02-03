@@ -37,5 +37,6 @@ c.execute("""CREATE TABLE IF NOT EXISTS quiz_questions(
         )""")
 
 conn.commit()
+conn.close()
 
 print("La base de données HiMe a été créée et est prête à être utilisée :)")

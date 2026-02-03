@@ -2,12 +2,12 @@ import os
 from dictionnaire import get_vocabulary, supprimer_vocabulaire, get_choix, get_list
 from progression import n_mots, n_expressions, affiche_n
 
-print("bienvenue ! HiMe est a votre service.")
-
 def clrean_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 def affiche_menu():
+    print("bienvenue ! HiMe est a votre service.")
+
     print("\nA - ajouter un vocabulaire")
     print("B - voir ma liste de vocabulaire")
     print("C - jouer un quiz")

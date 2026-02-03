@@ -5,6 +5,11 @@ from datetime import datetime
 def clrean_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
+def r_menu(code: str) -> bool:
+    if code == "r":
+        return True
+    return False
+
 def get_vocabulary():
     clrean_screen()
 
@@ -13,17 +18,35 @@ def get_vocabulary():
 
     print("\nQuel est le mot du jour ? :)")
     
+    #recuperation du vocabulaire
     while True:
         word = input("\nAjouter un mot/expression * : ").lower().strip()
+
+        if r_menu(word):
+            return
+
         if word == "":
             print("Champ obligatoire! Veuillez saisir un mot ou une expression.")
+            continue
         elif not all(part.isalpha() for part in word.split()):
             print("Siasie un mot ou une expression valide")
-        else:
-            break
+            continue
 
+        c.execute("SELECT mot_expression FROM vocabulaire WHERE mot_expression = ?" ,(word,))
+        existe_w = c.fetchone()
+        if existe_w is not None:
+            print(f"Le vocabulaire \"{existe_w[0]}\" est existe deja !")
+            continue
+
+        break
+    
+    #recupere la nature du vocabulaire mot ou exprestion
     while True:
         nature = input("Type M = mot / E = expression * : ").lower().strip()
+
+        if r_menu(nature):
+            return
+
         if nature == "m":
             nature = "mot"
             break
@@ -33,9 +56,14 @@ def get_vocabulary():
         else:
             print("Réponse invalide! Choisissez M pour mot ou E pour expression.")
 
+    #recupere la traduction et la langue a traduire
     print("Traduction * :")
     while True:
         langue = input("Choisissez la langue K = kabyle / A = anglais / R = arabe :").lower().strip()
+
+        if r_menu(langue):
+            return
+        
         if langue == "":
             print("Champ obligatoire!")
             continue
@@ -60,8 +88,15 @@ def get_vocabulary():
 
         break
     
+    #recupere la definition du vocabulaire
     definition = input("Définition (optionnelle) : ").lower().strip()
+    if r_menu(definition):
+            return
+
+    #recupere un exmple avec le vocabulaire
     example = input("Exemple d’utilisation (optionnel) : ").lower().strip()
+    if r_menu(example):
+            return
 
     c.execute("""INSERT INTO vocabulaire
               (mot_expression,nature_vocab,definition_vocab,example_vocab,date_saisie) 
