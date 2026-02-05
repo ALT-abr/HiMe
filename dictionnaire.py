@@ -2,7 +2,7 @@ import os
 import sqlite3
 from datetime import datetime
 
-def clrean_screen():
+def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 def r_menu(code: str) -> bool:
@@ -11,7 +11,7 @@ def r_menu(code: str) -> bool:
     return False
 
 def get_vocabulary():
-    clrean_screen()
+    clear_screen()
 
     conn = sqlite3.connect("HiMe.db")
     c = conn.cursor()
@@ -113,7 +113,7 @@ def get_vocabulary():
     input("")
 
 def supprimer_vocabulaire():
-    clrean_screen()
+    clear_screen()
 
     conn = sqlite3.connect("HiMe.db")
     conn.execute("PRAGMA foreign_keys = ON")
@@ -122,10 +122,11 @@ def supprimer_vocabulaire():
     while True:
         nom = input("quelle vocabulaire souhite vous a supprimer : ").lower().strip()
         if nom == "":
-            break
+            return
 
         c.execute("SELECT id_vocab FROM vocabulaire WHERE mot_expression = ?", (nom,))
         ver = c.fetchone()
+
         if ver is None:
             print("Mot ou expression introuvable.")
         else:
@@ -135,7 +136,9 @@ def supprimer_vocabulaire():
 
     conn.commit()
     conn.close()
+
     print("\nMot / expression supprimé avec succès.")
+    input()
 
 def get_choix():
     while True:
@@ -151,7 +154,7 @@ def get_choix():
     return choix
 
 def get_list(nature: str):
-    clrean_screen()
+    clear_screen()
     
     conn = sqlite3.connect("HiMe.db")
     c = conn.cursor()
