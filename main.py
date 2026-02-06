@@ -1,4 +1,5 @@
 import os
+from database import initee_db
 from dictionnaire import get_vocabulary, supprimer_vocabulaire, get_choix, get_list
 from progression import affiche_n
 from quiz import quiz_menu, q_history
@@ -49,4 +50,5 @@ def main():
             input()
 
 if __name__ == "__main__":
+    initee_db()
     main()
