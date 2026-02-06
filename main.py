@@ -7,17 +7,18 @@ def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 def affiche_menu():
-    print("bienvenue ! HiMe est a votre service.")
-
-    print("\nPour returne au menu principale saisie : r")
-
-    print("\nA - ajouter un vocabulaire")
-    print("B - voir ma liste de vocabulaire")
-    print("C - jouer un quiz")
-    print("S - supprimer un vocabulaire")
-    print("D - voir l'historique de mes quiz")
-    print("E - voir mes statistiques")
-    print("Q - quitter")
+    print("---------------_ Bienvenue sur HiMe ! _--------------")
+    print("|                                                   |")
+    print("|  Pour revenir au menu principal, saisissez : r    |")
+    print("|                                                   |")
+    print("|  A - ajouter un vocabulaire                       |")
+    print("|  B - voir ma liste de vocabulaire                 |")
+    print("|  C - supprimer un vocabulaire                     |")
+    print("|  D - jouer un quiz                                |")
+    print("|  E - voir l'historique de mes quiz                |")
+    print("|  F - voir mes statistiques                        |")
+    print("|  Q - quitter                                      |")
+    print("|_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|")
 
 def main():
     while True:
@@ -35,13 +36,13 @@ def main():
         elif user_input == "b":
             nature = get_choix()
             get_list(nature)
-        elif user_input == "s":
-            supprimer_vocabulaire()
         elif user_input == "c":
-            quiz_menu()
+            supprimer_vocabulaire()
         elif user_input == "d":
-            q_history()
+            quiz_menu()
         elif user_input == "e":
+            q_history()
+        elif user_input == "f":
             affiche_n("mot", "expression")
         else:
             print("Commande non reconnue. Veuillez réessayer.")

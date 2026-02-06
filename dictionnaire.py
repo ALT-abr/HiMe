@@ -1,5 +1,5 @@
+from database import connection
 import os
-import sqlite3
 from datetime import datetime
 
 def clear_screen():
@@ -13,16 +13,17 @@ def r_menu(code: str) -> bool:
 def get_vocabulary():
     clear_screen()
 
-    conn = sqlite3.connect("HiMe.db")
-    c = conn.cursor()
+    conn, c = connection()
 
-    print("\nQuel est le mot du jour ? :)")
+    print("\nAjout d’un nouveau vocabulaire :)")
     
     #recuperation du vocabulaire
     while True:
-        word = input("\nAjouter un mot/expression * : ").lower().strip()
+        print("\nVeuillez saisir un mot ou une expression valide *")
+        word = input("--> ").lower().strip()
 
         if r_menu(word):
+            conn.close()
             return
 
         if word == "":
@@ -35,16 +36,19 @@ def get_vocabulary():
         c.execute("SELECT mot_expression FROM vocabulaire WHERE mot_expression = ?" ,(word,))
         existe_w = c.fetchone()
         if existe_w is not None:
-            print(f"Le vocabulaire \"{existe_w[0]}\" est existe deja !")
+            print(f"Ce vocabulaire existe déjà !")
             continue
 
         break
     
     #recupere la nature du vocabulaire mot ou exprestion
     while True:
-        nature = input("Type M = mot / E = expression * : ").lower().strip()
+        print("\nSaisie M pour mot *")
+        print("Saisie E pour expression *")
+        nature = input("--> ").lower().strip()
 
         if r_menu(nature):
+            conn.close()
             return
 
         if nature == "m":
@@ -57,45 +61,31 @@ def get_vocabulary():
             print("Réponse invalide! Choisissez M pour mot ou E pour expression.")
 
     #recupere la traduction et la langue a traduire
-    print("Traduction * :")
     while True:
-        langue = input("Choisissez la langue K = kabyle / A = anglais / R = arabe :").lower().strip()
+        print("\nTraduction * :")
+        traduction = input("--> ").lower().strip()
 
-        if r_menu(langue):
-            return
-        
-        if langue == "":
-            print("Champ obligatoire!")
-            continue
-
-        if langue == "k":
-            langue = "kabyle"
-        elif langue == "a":
-            langue = "anglais"
-        elif langue == "r":
-            langue = "arabe"
-        else:
-            print("Choix invalide! Veuillez entrer K, A ou R")
-            continue
-
-        traduction = input(f"Saisissez la traduction en \"{langue}\" : ").lower().strip()
         if traduction == "":
             print("La traduction est obligatoire!")
             continue
-        elif not all(part.isalpha() for part in word.split()):
+        elif not all(part.isalpha() for part in traduction.split()):
             print("La traduction doit contenir uniquement des lettres!")
             continue
 
         break
     
     #recupere la definition du vocabulaire
-    definition = input("Définition (optionnelle) : ").lower().strip()
+    print("\nDéfinition (optionnelle)")
+    definition = input("--> : ").lower().strip()
     if r_menu(definition):
+            conn.close()
             return
 
     #recupere un exmple avec le vocabulaire
-    example = input("Exemple d’utilisation (optionnel) : ").lower().strip()
+    print("\nExemple d’utilisation (optionnel)")
+    example = input("--> : ").lower().strip()
     if r_menu(example):
+            conn.close()
             return
 
     c.execute("""INSERT INTO vocabulaire
@@ -103,25 +93,25 @@ def get_vocabulary():
               VALUES(?,?,?,?,?)""", (word,nature,definition,example,datetime.now()))
     
     c.execute("""INSERT INTO traduction
-              (traduction,langue_trad,vocabulaire)
-              VALUES(?,?,?)""", (traduction, langue,c.lastrowid))
+              (traduction,vocabulaire)
+              VALUES(?,?)""", (traduction, c.lastrowid))
     
     conn.commit()
     conn.close()
 
-    print("Yay! le vocabulaire a été ajouté avec succès!")
+    print("Yaay! Le vocabulaire a été ajouté avec succès.")
     input("")
 
 def supprimer_vocabulaire():
     clear_screen()
 
-    conn = sqlite3.connect("HiMe.db")
-    conn.execute("PRAGMA foreign_keys = ON")
-    c = conn.cursor()
+    conn, c = connection()
 
     while True:
-        nom = input("quelle vocabulaire souhite vous a supprimer : ").lower().strip()
+        print("Quel vocabulaire souhaitez-vous supprimer ?")
+        nom = input("--> ").lower().strip()
         if nom == "":
+            conn.close()
             return
 
         c.execute("SELECT id_vocab FROM vocabulaire WHERE mot_expression = ?", (nom,))
@@ -142,7 +132,9 @@ def supprimer_vocabulaire():
 
 def get_choix():
     while True:
-        choix = input("voire M = ma listes des mots ou E = ma listes des expresions : ").lower()
+        print("E pour affiche la liste des expressions")
+        print("M pour affiche la liste des mots")
+        choix = input("--> : ").lower()
         if choix == "m":
             choix = "mot"
             break
@@ -150,14 +142,13 @@ def get_choix():
             choix = "expression"
             break
         else:
-            print("choix invalide! resaye.")
+            print("Choix invalide. Veuillez réessayer.")
     return choix
 
 def get_list(nature: str):
     clear_screen()
     
-    conn = sqlite3.connect("HiMe.db")
-    c = conn.cursor()
+    conn, c = connection()
 
     if nature == "mot":
         c.execute("SELECT mot_expression, definition_vocab, example_vocab FROM vocabulaire WHERE nature_vocab = ?" ,(nature,))
@@ -167,16 +158,15 @@ def get_list(nature: str):
         items = c.fetchall()
 
     if not items:
-        print("La liste est vide pour l'instant.")
+        print("Aucun vocabulaire disponible pour le moment.")
         conn.close()
         input("")
         return
     
-    print("-" *50)
+    print("-" *70)
     for i, (mot, definition, example) in enumerate(items, 1):
-        print(f"{i} | {mot} | {definition or '-'} | {example or '-'}")
-        print("-" *50)
+        print(f"| {i} | {mot} | {definition or '-'} | {example or '-'}")
+        print("-" *70)
 
     conn.close()
-
     input("")

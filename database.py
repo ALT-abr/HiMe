@@ -1,13 +1,17 @@
 import sqlite3
 
-conn = sqlite3.connect("HiMe.db")
- 
-c = conn.cursor()
+def connection():
+    conn = sqlite3.connect("HiMe.db")
+    conn.execute("PRAGMA foreign_keys = ON")
+    c = conn.cursor()
+    return conn, c
+
+conn, c = connection()
 
 c.execute("""CREATE TABLE IF NOT EXISTS vocabulaire(
         id_vocab INTEGER PRIMARY KEY,
         mot_expression TEXT NOT NULL,
-        nature_vocab TEXT NOT NULL,    /*ENUM("mot","expression")*/
+        nature_vocab TEXT NOT NULL,    /*("mot","expression")*/
         definition_vocab TEXT,
         example_vocab TEXT,
         date_saisie DATETIME
@@ -16,14 +20,13 @@ c.execute("""CREATE TABLE IF NOT EXISTS vocabulaire(
 c.execute("""CREATE TABLE IF NOT EXISTS traduction(
         id_trad INTEGER PRIMARY KEY,
         traduction TEXT NOT NULL,
-        langue_trad TEXT NOT NULL,     /*ENUM("anglais","kabyle","arabe")*/
         vocabulaire INTEGER NOT NULL,
         FOREIGN KEY(vocabulaire) REFERENCES vocabulaire(id_vocab) ON DELETE CASCADE
         )""")
 
 c.execute("""CREATE TABLE IF NOT EXISTS quiz(
         id_quiz INTEGER PRIMARY KEY,
-        type_quiz TEXT NOT NULL,       /*ENUM("mot-traduction","expression-traduction","definition-mot")*/
+        type_quiz TEXT NOT NULL,       /*("mot-traduction","expression-traduction","definition-mot")*/
         score_quiz INTEGER NOT NULL,
         date_quiz DATETIME NOT NULL
         )""")
@@ -39,4 +42,4 @@ c.execute("""CREATE TABLE IF NOT EXISTS quiz_questions(
 conn.commit()
 conn.close()
 
-print("La base de données HiMe a été créée et est prête à être utilisée :)")
+print("Base de données HiMe initialisée avec succès :)")
