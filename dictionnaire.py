@@ -16,6 +16,25 @@ def get_vocabulary():
     conn, c = connection()
 
     print("\nAjout d’un nouveau vocabulaire :)")
+
+    #recupere la nature du vocabulaire mot ou exprestion
+    while True:
+        print("\nSaisie M pour mot *")
+        print("Saisie E pour expression *")
+        nature = input("--> ").lower().strip()
+
+        if r_menu(nature):
+            conn.close()
+            return
+
+        if nature == "m":
+            nature = "mot"
+            break
+        elif nature == "e":
+            nature = "expression"
+            break
+        else:
+            print("Réponse invalide! Choisissez M pour mot ou E pour expression.")
     
     #recuperation du vocabulaire
     while True:
@@ -40,25 +59,6 @@ def get_vocabulary():
             continue
 
         break
-    
-    #recupere la nature du vocabulaire mot ou exprestion
-    while True:
-        print("\nSaisie M pour mot *")
-        print("Saisie E pour expression *")
-        nature = input("--> ").lower().strip()
-
-        if r_menu(nature):
-            conn.close()
-            return
-
-        if nature == "m":
-            nature = "mot"
-            break
-        elif nature == "e":
-            nature = "expression"
-            break
-        else:
-            print("Réponse invalide! Choisissez M pour mot ou E pour expression.")
 
     #recupere la traduction et la langue a traduire
     while True:
