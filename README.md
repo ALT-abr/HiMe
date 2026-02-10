@@ -1,4 +1,3 @@
-HiMe est un projet personnel développé en Python, conçu pour accompagner l’utilisateur dans l’apprentissage et l’enrichissement de son vocabulaire.
 🧠 HiMe – Assistant personnel d’apprentissage du vocabulaire
 📌 Présentation
 
@@ -30,4 +29,12 @@ Le bloc Progression permet à l’utilisateur de visualiser son évolution dans 
 
 🎯 Objectif du projet
 
-HiMe repose sur un apprentissage actif combinant organisation du vocabulaire, pratique par le quiz, suivi de l’historique et analyse de la progression, tout en renforçant mes compétences en programmation et en gestion de bases de données.
+HiMe vise à mettre l’utilisateur au centre de son propre apprentissage, en le rendant acteur et responsable de sa progression.
+
+-Le projet repose sur un apprentissage actif combinant :
+-l’organisation du vocabulaire,
+-la pratique régulière à travers des quiz,
+-le suivi de l’historique des résultats,
+-l’analyse de la progression dans le temps.
+
+Ce projet permet également de renforcer mes compétences en programmation Python et en gestion de bases de données.
