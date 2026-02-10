@@ -1,6 +1,18 @@
-🧠 Présentation
-
 HiMe est un projet personnel développé en Python, conçu pour accompagner l’utilisateur dans l’apprentissage et l’enrichissement de son vocabulaire.
+🧠 HiMe – Assistant personnel d’apprentissage du vocabulaire
+📌 Présentation
+
+HiMe est un projet personnel développé en Python avec SQLite,conçu pour accompagne et destiné à aider l’utilisateur dans l’apprentissage et l’enrichissement de son vocabulaire.
+
+Le projet combine :
+
+gestion d’un dictionnaire personnel,
+
+entraînement par quiz "trois quiz",
+
+suivi des résultats et statistiques,
+
+stockage persistant des données.
 
 📚 Organisation du vocabulaire
 
