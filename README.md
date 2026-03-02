@@ -1,5 +1,9 @@
 # 🧠 HiMe – Assistant personnel d’apprentissage du vocabulaire
 
+<p align="center">
+  <img src="image/HiMe.png" alt="Illustration HiMe" width="500">
+</p>
+
 ## 📌 Présentation
 
 HiMe est un projet personnel développé en **Python** avec **SQLite**, conçu pour accompagne et destiné à aider l’utilisateur dans l’apprentissage et l’enrichissement de son vocabulaire.
